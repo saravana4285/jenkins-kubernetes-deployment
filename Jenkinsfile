@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    dockerimagename = "saravana4285/flask-app-image"
+    dockerimagename = "sara/react-app"
     dockerImage = ""
   }
 
@@ -11,15 +11,14 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git 'https://github.com/saravana4285/CICD-APP-DEMO.git'
-        
+        git 'https://github.com/saravana4285/jenkins-kubernetes-deployment.git'
       }
     }
 
     stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build flask-app-image
+          dockerImage = docker.build dockerimagename
         }
       }
     }
@@ -40,7 +39,7 @@ pipeline {
     stage('Deploying React.js container to Kubernetes') {
       steps {
         script {
-          kubernetesDeploy(configs: "deployment.yml", "service.yml")
+          kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
         }
       }
     }
