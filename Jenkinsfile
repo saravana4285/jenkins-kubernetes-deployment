@@ -30,7 +30,7 @@ pipeline {
         sh 'docker push saravana4285/sara-app'
       }
     }
-  }
+
     stage('Deploying React.js container to Kubernetes') {
       steps {
         script {
@@ -38,6 +38,7 @@ pipeline {
         }
       }
     }
+  }
   post {
     always {
       sh 'docker logout'
