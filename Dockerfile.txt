@@ -1,3 +1,5 @@
-FROM node:18.16.0-alpine
-
-RUN apk add -U subversion
+FROM ubuntu
+RUN apt-get update
+RUN apt-get install figlet
+ENTRYPOINT ["figlet", "-f", "script"]
+CMD hello world
