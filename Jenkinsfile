@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    dockerimagename = "sara/react-app"
+    dockerimagename = "react-app"
     dockerImage = ""
   }
 
@@ -26,7 +26,7 @@ pipeline {
 
     stage('Pushing Image') {
       environment {
-               registryCredential = 'docker-hub credentials'
+               registryCredential = 'dockerhub-credentials'
            }
       steps{
         script {
