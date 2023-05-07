@@ -15,7 +15,7 @@ pipeline {
         sh 'pwd'
         sh 'ls -lrt'
         sh 'mv Dockerfile.txt Dockerfile'
-        sh 'sudo docker build -t $dockerimagename .'
+        sh 'sudo docker build -t saravana4285/sara-app .'
       }
     }
     stage('Pushing Image') {
