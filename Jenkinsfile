@@ -18,6 +18,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
+          echo 'Image Build in progress'
           dockerImage = docker.build dockerimagename
         }
       }
