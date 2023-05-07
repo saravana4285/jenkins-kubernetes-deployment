@@ -16,6 +16,7 @@ pipeline {
 
     stage('Build') {
       steps {
+        sh 'id'
         sh 'sudo docker build -t new-app .'
       }
     }
