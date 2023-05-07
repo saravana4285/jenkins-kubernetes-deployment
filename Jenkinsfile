@@ -1,11 +1,10 @@
-#!/usr/bin/env groovy
 pipeline {
   agent any
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
   environment {
-    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
   }
   stages {
     stage('Checkout Source') {
@@ -13,30 +12,25 @@ pipeline {
         git 'https://github.com/Bravinsimiyu/jenkins-kubernetes-deployment.git'
       }
     }
-
     stage('Build') {
       steps {
-        sh 'id'
         sh 'sudo docker build . -f Dockerfile.txt'
       }
     }
-    stage('Pushing Image') {
-      environment {
-               registryCredential = 'dockerhub-credentials'
-           }
-    }
-      steps{
-        script {
-          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-            dockerImage.push("latest")
-          }
-        }
+    stage('Login') {
+      steps {
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
-    
-  post {
-    always {
-      sh 'docker logout'
+    }
+    stage('Push') {
+      steps {
+        sh 'sudo docker push lloydmatereke/jenkins-docker-hub'
+      }
     }
   }
-}
+  post {
+    always {
+      sh 'sudo docker logout'
+    }
+  }
 }
