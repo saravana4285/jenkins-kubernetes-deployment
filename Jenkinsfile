@@ -20,17 +20,18 @@ pipeline {
         sh 'sudo docker build . -f Dockerfile.txt'
       }
     }
-    stage('Login') {
-      steps {
-        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+    stage('Pushing Image') {
+      environment {
+               registryCredential = 'dockerhub-credentials'
+           }
+      steps{
+        script {
+          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+            dockerImage.push("latest")
+          }
+        }
       }
     }
-    stage('Push') {
-      steps {
-        sh 'docker push saravana4285/new-app'
-      }
-    }
-  }
   post {
     always {
       sh 'docker logout'
