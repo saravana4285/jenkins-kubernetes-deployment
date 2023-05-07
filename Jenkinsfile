@@ -16,7 +16,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'docker build -t new-app .'
+        sh 'sudo docker build -t new-app .'
       }
     }
     stage('Login') {
