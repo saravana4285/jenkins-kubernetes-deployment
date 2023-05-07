@@ -31,10 +31,10 @@ pipeline {
       }
     }
 
-    stage('Deploying React.js container to Kubernetes') {
+    stage('Deploying sara-app container to minikube cluster') {
       steps {
         script {
-          kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
+          kubernetes(configs: "deployment.yaml", "service.yaml")
         }
       }
     }
