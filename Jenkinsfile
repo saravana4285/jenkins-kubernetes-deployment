@@ -17,7 +17,7 @@ pipeline {
     stage('Build') {
       steps {
         sh 'id'
-        sh 'sudo docker build -t new-app .'
+        sh 'sudo docker build . -f Dockerfile.txt'
       }
     }
     stage('Login') {
@@ -27,7 +27,7 @@ pipeline {
     }
     stage('Push') {
       steps {
-        sh 'docker push new-app'
+        sh 'docker push saravana4285/new-app'
       }
     }
   }
