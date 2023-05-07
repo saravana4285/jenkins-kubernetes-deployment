@@ -14,17 +14,20 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'sudo docker build . -f Dockerfile.txt'
+        sh 'sudo docker build . -f Dockerfile.txt -i saravana4285/sara-app'
       }
     }
     stage('Login') {
       steps {
+        sh 'echo $DOCKERHUB_CREDENTIALS'
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW'
+        sh 'echo $DOCKERHUB_CREDENTIALS_USR'
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
     stage('Push') {
       steps {
-        sh 'sudo docker push lloydmatereke/jenkins-docker-hub'
+        sh 'sudo docker push saravana4285/sara-app'
       }
     }
   }
