@@ -33,10 +33,9 @@ pipeline {
 
     stage('Deploying sara-app container to minikube cluster') {
       steps {
-        script {
-          kubernetes(configs: "deployment.yaml", "service.yaml")
-        }
-      }
+          sh 'docker pull saravana4285/sara-app'
+          sh 'docker run -d --name jenikins-pod1 saravana4285/sara-app'
+       }
     }
   }
   post {
