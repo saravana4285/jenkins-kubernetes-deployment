@@ -3,9 +3,7 @@ pipeline {
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
-  environment {
-    DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
-  }
+
   stages {
     stage('Checkout Source') {
       steps {
@@ -17,7 +15,7 @@ pipeline {
         sh 'pwd'
         sh 'ls -lrt'
         sh 'mv Dockerfile.txt Dockerfile'
-        sh 'sudo docker build -t saravana4285/sara-app .'
+        sh 'sudo docker build -t $dockerimagename .'
       }
     }
     stage('Pushing Image') {
@@ -27,7 +25,7 @@ pipeline {
       steps{
         script {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-            sh 'docker push saravana4285/sara-app'
+          sh 'docker push docker.io/saravana4285/sara-app'
           }
         }
       }
