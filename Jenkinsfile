@@ -14,6 +14,8 @@ pipeline {
     }
     stage('Build') {
       steps {
+        sh 'pwd'
+        sh 'ls -lrt'
         sh 'sudo docker build -t saravana4285/sara-app .'
       }
     }
