@@ -1,9 +1,8 @@
 #!/usr/bin/env groovy
 pipeline {
+  
   agent any
-  options {
-    buildDiscarder(logRotator(numToKeepStr: '5'))
-  }
+
   stages {
     stage('Checkout Source') {
       steps {
@@ -21,6 +20,7 @@ pipeline {
       environment {
                registryCredential = 'dockerhub-credentials'
            }
+    }
       steps{
         script {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
@@ -28,7 +28,7 @@ pipeline {
           }
         }
       }
-    }
+    
   post {
     always {
       sh 'docker logout'
