@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'sudo docker build . -f Dockerfile.txt -i saravana4285/sara-app'
+        sh 'sudo docker build -t saravana4285/sara-app .'
       }
     }
     stage('Login') {
