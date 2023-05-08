@@ -40,7 +40,7 @@ pipeline {
    node {
    stage('Apply Kubernetes files') {
     withKubeConfig([credentialsId: 'mykubeconfig', serverUrl: 'https://192.168.0.104:8443']) {
-      sh 'kubectl apply -f deployment.yaml'
+      sh 'minikube kubectl -- get pods -A'
     }
   }
 }
