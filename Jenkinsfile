@@ -33,7 +33,7 @@ pipeline {
     stage('Deploy') {
       steps {
         sh 'uname -a'
-        sh 'ssh minikube kubectl apply -f deployment.yaml'
+        sh ' minikube kubectl -- apply --filename deployment.yaml'
       }
     }
   }
