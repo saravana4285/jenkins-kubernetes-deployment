@@ -36,11 +36,11 @@ pipeline {
       sh 'docker logout'
     }
   }
-}
-   node {
+
+
    stage('Apply Kubernetes files') {
     withKubeConfig([credentialsId: 'mykubeconfig', serverUrl: 'https://192.168.0.104:8443']) {
       sh 'minikube kubectl -- get pods -A'
-    }
   }
+}
 }
