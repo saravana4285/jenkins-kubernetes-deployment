@@ -30,18 +30,17 @@ pipeline {
         sh 'docker push saravana4285/sara-app'
       }
     }
-
-    stage('Deploying sara-app container to minikube cluster') {
-      steps {
-        script {
-          kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
-       }
-    }
-  }
   }
   post {
     always {
       sh 'docker logout'
+    }
+  }
+}
+   node {
+   stage('Apply Kubernetes files') {
+    withKubeConfig([credentialsId: 'mykubeconfig', serverUrl: 'https://192.168.0.104:8443']) {
+      sh 'kubectl apply -f deployment.yaml'
     }
   }
 }
