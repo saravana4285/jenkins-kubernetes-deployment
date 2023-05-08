@@ -30,11 +30,12 @@ pipeline {
         sh 'docker push saravana4285/sara-app'
       }
     }
-    stage('Apply Kubernetes files') {
-      withKubeConfig([credentialsId: 'mykubeconfig', serverUrl: 'https://192.168.0.104:8443']) {
-        sh 'minikube kubectl -- get pods -A'
-  }
-}
+    stage('Deploy') {
+      steps {
+        sh 'uname -a'
+        sh 'ssh minikube kubectl apply -f deployment.yaml'
+      }
+    }
   }
   post {
     always {
