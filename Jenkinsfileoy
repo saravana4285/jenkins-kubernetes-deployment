@@ -6,7 +6,6 @@ pipeline {
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
   }
-  }
   stages {
     stage('Checkout Source') {
       steps {
@@ -31,7 +30,7 @@ pipeline {
         sh 'docker push saravana4285/sara-app'
       }
     }
-    stage('Push') {
+    stage('Deploy') {
       steps {
         sh 'docker pull saravana4285/sara-app'
         sh 'docker run -d --name "new-app" saravana4285/sara-app'
