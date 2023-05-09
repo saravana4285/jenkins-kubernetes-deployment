@@ -32,10 +32,8 @@ pipeline {
     }
     stage('Deploy Patient App') {
       steps {
-        withCredentials([
-            string(credentialsId: 'mykubeconfig', variable: 'api_token')
-            ]) {
-             sh 'kubectl --token $api_token --server https://192.168.0.104:8443 --insecure-skip-tls-verify=true apply -f deployment.yaml '
+         script {
+               kubernetesDeploy kubeconfigId: 'mykubeconfig', configs: 'deployment.yaml'
                }
             }
            }
