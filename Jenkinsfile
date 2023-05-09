@@ -39,6 +39,7 @@ pipeline {
     stage('Deploy in Minikube'){
       steps {
         withCredentials([file(credentialsId: 'mykubeconfig')]) {
+          sh 'ls -lrt'
           sh 'minikube kubectl -- get pods -A'
     }
       }
