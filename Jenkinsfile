@@ -6,11 +6,6 @@ pipeline {
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
   }
-  agent {
-    kubernetes {
-      yamlFile 'deployment.yaml'
-      retries 2
-    }
   }
   stages {
     stage('Checkout Source') {
@@ -34,6 +29,12 @@ pipeline {
     stage('Push') {
       steps {
         sh 'docker push saravana4285/sara-app'
+      }
+    }
+    stage('Push') {
+      steps {
+        sh 'docker pull saravana4285/sara-app'
+        sh 'docker run -d --name "new-app" saravana4285/sara-app'
       }
     }
     }
