@@ -40,9 +40,9 @@ pipeline {
     }
     stage('Deploy in Minikube'){
       steps {
-        sh '/home/cicd--vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl config set-cluster minikube --server=https://192.168.0.104:8443 --insecure-skip-tls-verify=true'
-        sh '/home/cicd--vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl config set-context minikube --cluster=minikube --user=minikube'
-        sh '/home/cicd--vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl config use-context minikube '
+        sh '/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl config set-cluster minikube --server=https://192.168.0.104:8443 --insecure-skip-tls-verify=true'
+        sh '/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl config set-context minikube --cluster=minikube --user=minikube'
+        sh '/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl config use-context minikube '
         sh 'ls -lrt'
         sh '/usr/local/bin/minikube kubectl -- get pods -A'
     }
