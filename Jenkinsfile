@@ -45,8 +45,6 @@ pipeline {
         sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl get pods"'
         sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl create namespace cicd-test2"'
         sh 'sudo su - cicd-vm1 -c "pwd"'
-        sh '#sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl delete -f  service/net-service"'
-        sh '#sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl delete -f  deployment.apps/deployment"'
         sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl create -f  /var/lib/jenkins/workspace/ins-kubernetes-deployment_master/deployment.yaml"'
         sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl create -f  /var/lib/jenkins/workspace/ins-kubernetes-deployment_master/service.yaml"'
     }
