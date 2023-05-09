@@ -44,8 +44,9 @@ pipeline {
         sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl config set-context minikube --cluster=minikube --user=minikube"'
         sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl config use-context minikube"'
         sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl get pods"'
-        sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl create namespace CICD-pipeline-ns"'
-         sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl apply -f deployment.yaml -n CICD-pipeline-ns "'
+        sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl create namespace CICD-test"'
+        sh 'sudo su - cicd-vm1 -c "pwd"'
+        sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl apply -f deployment.yaml -n  "'
     }
       }
   }
