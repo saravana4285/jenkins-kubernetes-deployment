@@ -36,14 +36,7 @@ pipeline {
         sh 'docker push saravana4285/sara-app'
       }
     }
-    stage('Deploy Patient App') {
-      steps {
-         script {
-               kubernetesDeploy kubeconfigId: 'mykubeconfig', configs: 'deployment.yaml'
-               }
-            }
-           }
-  }
+    }
   post {
     always {
       sh 'docker logout'
