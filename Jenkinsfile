@@ -6,6 +6,12 @@ pipeline {
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
   }
+  agent {
+    kubernetes {
+      yamlFile 'deployment.yaml'
+      retries 2
+    }
+  }
   stages {
     stage('Checkout Source') {
       steps {
