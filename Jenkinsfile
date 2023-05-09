@@ -30,13 +30,20 @@ pipeline {
         sh 'docker push saravana4285/sara-app'
       }
     }
-    stage('Deploy') {
+    stage('Deploy in local jenkins server') {
       steps {
         sh 'docker pull saravana4285/sara-app'
         sh 'docker run -d --name "new-app" saravana4285/sara-app'
       }
     }
+    stage('Deploy in Minikube'){
+      steps {
+        withCredentials([file(credentialsId: 'mykubeconfig')]) {
+          sh 'minikube kubectl -- get pods -A'
     }
+      }
+    }
+  }
   post {
     always {
       sh 'docker logout'
