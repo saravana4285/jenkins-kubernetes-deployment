@@ -34,6 +34,7 @@ pipeline {
     stage('Deploy in local jenkins server') {
       steps {
         sh 'docker pull saravana4285/sara-app'
+        sh 'docker rm -f new-app'
         sh 'docker run -d --name "new-app" saravana4285/sara-app'
       }
     }
