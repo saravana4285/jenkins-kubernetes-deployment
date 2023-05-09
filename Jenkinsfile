@@ -40,9 +40,9 @@ pipeline {
     }
     stage('Deploy in Minikube'){
       steps {
-        sh 'echo $MINIKUBE_CREDENTIALS | minikube kubectl -- get pods -A'
+        sh 'echo $MINIKUBE_CREDENTIALS'
         sh 'ls -lrt'
-        sh 'minikube kubectl -- get pods -A'
+        sh '/usr/local/bin/minikube kubectl -- get pods -A'
     }
       }
   }
