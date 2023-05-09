@@ -5,6 +5,7 @@ pipeline {
   }
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+    MINIKUBE_CREDENTIALS= credentials('mykubeconfig')
   }
   stages {
     stage('Checkout Source') {
