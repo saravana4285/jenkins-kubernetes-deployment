@@ -30,12 +30,15 @@ pipeline {
         sh 'docker push saravana4285/sara-app'
       }
     }
-    stage('Deploy') {
+    stage('Deploy Patient App') {
       steps {
-        sh 'uname -a'
-        sh ' minikube kubectl -- apply --filename deployment.yaml'
-      }
-    }
+        withCredentials([
+            string(credentialsId: 'mykubeconfig', variable: 'api_token')
+            ]) {
+             sh 'kubectl --token $api_token --server https://192.168.0.104:8443 --insecure-skip-tls-verify=true apply -f deployment.yaml '
+               }
+            }
+           }
   }
   post {
     always {
