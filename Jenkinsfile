@@ -43,9 +43,9 @@ pipeline {
         sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl config set-context minikube --cluster=minikube --user=minikube"'
         sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl config use-context minikube"'
         sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl get pods"'
-        sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl create namespace cicd-test4"'
+        sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl create namespace cicd-test2"'
         sh 'sudo su - cicd-vm1 -c "pwd"'
-        sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.39 -- /agnhost netexec --http-port=8080"'
+        sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl create deployment hello-node-new --image=registry.k8s.io/e2e-test-images/agnhost:2.39 -- /agnhost netexec --http-port=8080"'
    
     }
       }
