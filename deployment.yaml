@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: sara-app #The name of the application container
-        image: saravana4285/sara-app:latest #The Docker image for building the  application container
+        image: saravana4285/CICD-APP-DEMO:latest #The Docker image for building the  application container
         ports:
         - containerPort: 80 #The port for the application   container
