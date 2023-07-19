@@ -39,7 +39,7 @@ pipeline {
     }
     stage('Deploy in Minikube'){
       steps {
-        sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl config set-cluster minikube --server=https://192.168.0.104:8443 --insecure-skip-tls-verify=true"'
+        sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl config set-cluster minikube --server=https://192.168.0.105:8443 --insecure-skip-tls-verify=true"'
         sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl config set-context minikube --cluster=minikube --user=minikube"'
         sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl config use-context minikube"'
         sh 'sudo su - cicd-vm1 -c "/home/cicd-vm1/.minikube/cache/linux/amd64/v1.26.3/kubectl get pods"'
